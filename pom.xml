@@ -4,11 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>vn.nev.aws</groupId>
-	<artifactId>webapp</artifactId>
+	<artifactId>aws-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<!--<packaging>war</packaging>-->
+	<packaging>${project.packaging}</packaging>
 
-	<name>webapp</name>
+	<name>aws-demo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -29,6 +30,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,14 +47,47 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<project.packaging>jar</project.packaging>
+				<start-class>vn.nev.aws.demo.DemoApplication</start-class>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+				<finalName>aws-demo</finalName>
+			</build>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<project.packaging>war</project.packaging>
+				<start-class>vn.nev.aws.demo.DemoWebApplication</start-class>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+				<finalName>aws-demo</finalName>
+			</build>
+		</profile>
+
+	</profiles>
 
 	<repositories>
 		<repository>

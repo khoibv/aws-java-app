@@ -1,12 +1,12 @@
-package vn.nev.aws.webapp;
+package vn.nev.aws.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebappApplication {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebappApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package vn.nev.aws.webapp;
+package vn.nev.aws.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WebappApplicationTests {
+public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
