@@ -1,12 +1,24 @@
 spring:
+  profiles:
+    active: dev
   jpa:
     hibernate:
       ddl-auto: update
+logging:
+  level: debug
+
+---
+spring:
+  profiles: dev
   datasource:
     url: jdbc:mysql://localhost:3306/demo_java
     username: demo_java
     password: demo_java
-logging:
-  level: debug
 
-
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://mysql-01.c6jx5lsuwgfv.ap-northeast-1.rds.amazonaws.com:3306/demo_java
+    username: demo_java
+    password: demo_java
