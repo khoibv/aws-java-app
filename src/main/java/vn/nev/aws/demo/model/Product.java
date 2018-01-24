@@ -1,14 +1,29 @@
 package vn.nev.aws.demo.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Product {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
+  @Column(length = 100, nullable = false)
   private String category;
+
+  @Column(length = 255, nullable = false)
   private String productName;
+
+  @Column(nullable = false)
   private double price;
 
-  public Product() {}
+  public Product() {
+  }
 
   public Product(int id, String category, String productName, double price) {
     this();
