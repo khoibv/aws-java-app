@@ -1,12 +1,14 @@
 package vn.nev.aws.demo.service;
 
 import java.awt.Component;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import vn.nev.aws.demo.dao.ProductRepository;
 import vn.nev.aws.demo.form.SearchForm;
 import vn.nev.aws.demo.model.Product;
@@ -18,6 +20,8 @@ public class ProductServiceImpl implements ProductService {
   @Autowired
   private ProductRepository productRepository;
 
+  @Autowired
+  private AwsStorageService storageService;
 
   @Override
   public List<Product> list() {
@@ -36,9 +40,9 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public List<Product> search(SearchForm searchForm) {
+  public List<Product> search(String searchForm) {
     return productRepository
-        .searchByNameAndCategory(searchForm.getProductName(), searchForm.getCategory());
+        .searchByNameAndCategory(searchForm);
   }
 
   @Override
@@ -47,12 +51,24 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public Product create(Product product) {
+  @Transactional
+  public Product create(Product product, MultipartFile uploadFile) throws IOException {
+    if (uploadFile != null && uploadFile.getInputStream() != null) {
+      storageService.save(uploadFile.getInputStream(), uploadFile.getOriginalFilename());
+      product.setImage(uploadFile.getOriginalFilename());
+    }
+
     return productRepository.save(product);
   }
 
   @Override
-  public Product update(Product product) {
+  @Transactional
+  public Product update(Product product, MultipartFile uploadFile) throws IOException {
+    if (uploadFile != null && uploadFile.getInputStream() != null) {
+      storageService.save(uploadFile.getInputStream(), uploadFile.getOriginalFilename());
+      product.setImage(uploadFile.getOriginalFilename());
+    }
+
     return productRepository.save(product);
   }
 

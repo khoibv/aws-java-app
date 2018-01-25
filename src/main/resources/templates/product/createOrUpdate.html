@@ -19,13 +19,13 @@
     </div>
     <div class="panel-body">
       <div class="form-horizontal">
-        <form th:object="${product}" method="post">
-          <input type="hidden" th:field="*{id}" />
+        <form th:object="${product}" method="post" enctype="multipart/form-data">
+          <input type="hidden" th:field="*{id}"/>
           <div class="form-group">
             <label
                 th:text="${'Product name'}"
                 th:for="productName"
-                class="control-label col-xs-3"/>
+                class="col-xs-3"/>
             <div class="col-xs-9">
               <input type="text" th:field="*{productName}" maxlength="255" class="form-control"/>
             </div>
@@ -35,7 +35,7 @@
             <label
                 th:text="${'Category'}"
                 th:for="category"
-                class="control-label col-xs-3"/>
+                class="col-xs-3"/>
             <div class="col-xs-9">
               <select class="form-control"
                       th:field="*{category}">
@@ -49,9 +49,20 @@
             <label
                 th:text="${'Price'}"
                 th:for="price"
-                class="control-label col-xs-3"/>
+                class="col-xs-3"/>
             <div class="col-xs-9">
               <input type="text" th:field="*{price}" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label
+                th:text="${'Image'}"
+                th:for="file"
+                class="col-xs-3"/>
+            <div class="col-xs-9">
+              <input type="file" name="file" class="form-control input-sm" onchange="loadImage(this, '.product-img')"></input>
+              <img th:src="${@awsStorageService.getUrl(product.image)}" class="product-img"/>
             </div>
           </div>
 
@@ -79,6 +90,19 @@
     </div>
   </div>
   <a th:href="@{/product}">Back to Product List</a>
+  <script type="text/javascript">
+    function loadImage(input, target) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $(target).attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
 </div>
 </body>
 </html>

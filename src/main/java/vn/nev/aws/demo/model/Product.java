@@ -22,6 +22,9 @@ public class Product {
   @Column(nullable = false)
   private double price;
 
+  @Column(length = 255)
+  private String image;
+
   public Product() {
   }
 
@@ -35,8 +38,8 @@ public class Product {
 
   @Override
   public String toString() {
-    return String.format("{productName=%s, category=%s, price=%s}", this.getProductName(),
-        this.getCategory(), this.getPrice());
+    return String.format("{productName=%s, category=%s, price=%s, image=%s}", this.getProductName(),
+        this.getCategory(), this.getPrice(), this.getImage());
   }
 
   public int getId() {
@@ -70,4 +73,14 @@ public class Product {
   public void setPrice(double price) {
     this.price = price;
   }
+
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
 }

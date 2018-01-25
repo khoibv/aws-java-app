@@ -22,6 +22,11 @@ $(document).ready(function(){
     }
   });
 
+  $('#searchclear').on('click', function(e) {
+    $('input[name=searchData]').val("");
+    $('input[name=searchData]').closest('form').submit();
+  });
+
 });
 
 function showMessage(message) {
