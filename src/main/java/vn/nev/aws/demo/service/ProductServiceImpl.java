@@ -1,16 +1,13 @@
 package vn.nev.aws.demo.service;
 
-import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import vn.nev.aws.demo.dao.ProductRepository;
-import vn.nev.aws.demo.form.SearchForm;
 import vn.nev.aws.demo.model.Product;
 
 @Service

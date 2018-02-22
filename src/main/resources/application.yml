@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,8 +10,8 @@ logging:
 s3:
   accessKeyId: accessKey
   secretAccessKey: secretKey
-  bucketName: nev-aws-demo
-  region: s3-ap-northeast-1
+  bucketName: vn.khoibv.aws-demo
+  region: s3-us-east-1
   folder: img
 
 ---
@@ -26,6 +26,6 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:mysql://mysql-01.c6jx5lsuwgfv.ap-northeast-1.rds.amazonaws.com:3306/demo_java
+    url: jdbc:mysql://mysql-01.cgovit83emuh.us-east-1.rds.amazonaws.com:3306/demo_java
     username: demo_java
     password: demo_java
